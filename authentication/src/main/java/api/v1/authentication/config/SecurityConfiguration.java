@@ -23,7 +23,7 @@ public class SecurityConfiguration {
 
     @SneakyThrows
     @Bean
-    public SecurityFilterChain configure(HttpSecurity http){
+    public SecurityFilterChain configure(HttpSecurity http) {
 
         return http.build();
     }
