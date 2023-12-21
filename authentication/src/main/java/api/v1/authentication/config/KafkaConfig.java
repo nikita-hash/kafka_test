@@ -14,14 +14,14 @@ import java.util.Map;
 public class KafkaConfig {
 
     @Bean
-    public ProducerFactory<String, String> producerFactory() {
+    public ProducerFactory<String, PdfProducer> producerFactory() {
         Map<String, Object> config = new HashMap<>();
         // Здесь можно добавить другие настройки
         return new DefaultKafkaProducerFactory<>(config);
     }
 
     @Bean
-    public KafkaTemplate<String, String> kafkaTemplate() {
-        return new KafkaTemplate<>(producerFactory());
+    public KafkaTemplate<String, PdfProducer> kafkaTemplate() {
+        return new KafkaTemplate<String, PdfProducer>(producerFactory());
     }
 }

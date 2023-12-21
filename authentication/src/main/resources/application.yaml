@@ -7,11 +7,11 @@ spring:
     username: root
     password: 7899398
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/db_name
+    url: jdbc:postgresql://localhost:5432/postgres
   kafka:
     bootstrap-servers: ${kafka_bootstrap_servers:localhost:8081}
     producer:
       client-id: example
-        key-serializer: org.apache.kafka.common.serialization.StringSerializer
-        value-serializer: org.apache.kafka.common.serialization.StringSerializer
-        retries: 2
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      retries: 2

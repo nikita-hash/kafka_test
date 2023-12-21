@@ -1,5 +1,6 @@
 package api.v1.authentication.config;
 
+import api.v1.authentication.Dto.PdfEvent;
 import api.v1.authentication.persistency.User;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -13,11 +14,11 @@ public class PdfProducer {
 
     private static final Logger LOGGER= LoggerFactory.getLogger(PdfProducer.class);
 
-    private final KafkaTemplate<String,?> kafkaTemplate;
+    private final KafkaTemplate<String, PdfEvent> kafkaTemplate;
 
-    public void sendMessage(User user){
-        LOGGER.info(String.format("Доставка сообщения от пользователя : ",user.toString()));
-        Message<?>message=MessageBuilder.withPayload(null)
+    public void sendMessage(PdfEvent pdfEvent){
+        LOGGER.info(String.format("Доставка сообщения от пользователя : ",pdfEvent.getUser().getName()));
+        Message<?>message=MessageBuilder.withPayload(pdfEvent)
                 .setHeader("asd","asd")
                 .build();
         kafkaTemplate.send(message);
