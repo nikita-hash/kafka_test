@@ -6,11 +6,11 @@ spring:
   datasource:
     username: root
     password: 7899398
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/auth_kafka
   kafka:
-    bootstrap-servers: ${kafka_bootstrap_servers:localhost:8081}
     producer:
+      bootstrap-servers: localhost:9092
       client-id: example
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
