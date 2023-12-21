@@ -20,10 +20,14 @@ public class PdfProducer {
 
     private static final Logger LOGGER= LoggerFactory.getLogger(PdfProducer.class);
 
+    @Autowired
+    public PdfProducer(NewTopic topic, KafkaTemplate<String, PdfEvent> kafkaTemplate) {
+        this.pdfTopic = topic;
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
     private NewTopic pdfTopic;
 
-    @Autowired
     private KafkaTemplate<String, PdfEvent> kafkaTemplate;
 
 
