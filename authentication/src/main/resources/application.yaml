@@ -1,3 +1,5 @@
+server:
+  port: 8081
 spring:
   jpa:
     hibernate:
@@ -9,9 +11,14 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/auth_kafka
   kafka:
+    bootstrap-servers: localhost:9092
     producer:
-      bootstrap-servers: localhost:9092
-      client-id: example
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      retries: 2
+      properties:
+        acks: 1
+        spring:
+          json:
+            add:
+              type:
+                headers: false

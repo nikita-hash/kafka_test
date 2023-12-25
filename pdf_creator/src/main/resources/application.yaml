@@ -1,0 +1,22 @@
+spring:
+  jpa:
+    hibernate:
+    ddl-auto: update
+    show-sql: true
+  datasource:
+    username: root
+    password: 7899398
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/auth_kafka
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: pdf_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: '*'
